@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My App Register</title>
+    <title>@ViewBag.Title Rejestracja</title>
     @Styles.Render("~/Content/css")
     @*@Styles.Render("~/Content/cssStyled")
         @Scripts.Render("~/bundles/modernizr")*@
@@ -22,7 +22,7 @@
             {
                 @Html.AntiForgeryToken()
                 <div class="form-group"></div>
-                <h4>Create a new account.</h4>
+                <h4>Zarejestruj się</h4>
                 <hr />
                 if (Model == null)
                 {
@@ -42,17 +42,17 @@
                 }
                 <div class="form-group"></div>
                 <div class="col-md-12">
-                    <input type="password" name="Password" placeholder="Password" class="form-control center-block" required />
+                    <input type="password" name="Password" placeholder="Hasło" class="form-control center-block" required />
                     @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group"></div>
                 <div class="col-md-12">
-                    <input type="password" name="ConfirmPassword" placeholder="Confirm Password" class="form-control center-block" required />
+                    <input type="password" name="ConfirmPassword" placeholder="Potwierdź hasło" class="form-control center-block" required />
                     @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group"></div>
                 <div class="col-md-12">
-                    <input type="submit" class="btn-fancy btn-default form-control center-block" value="Register" />
+                    <input type="submit" class="btn-fancy btn-default form-control center-block" value="Zarejestruj" />
                 </div>
             }
         </div>

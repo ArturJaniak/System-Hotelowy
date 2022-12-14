@@ -58,7 +58,7 @@ namespace SystemHotelowyVer3.Models
         [Display(Name = "Hasło")]
         public string Password { get; set; }
 
-        [Display(Name = "Pamiętasz mnie?")]
+        [Display(Name = "Przypomnij hasło")]
         public bool RememberMe { get; set; }
     }
 

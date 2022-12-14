@@ -4,10 +4,10 @@
     //Layout = null;
 }
 
-@*<head>
+<head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>@ViewBag.Title - My App Login</title>
+        <title>@ViewBag.Title - Login</title>
         @Styles.Render("~/Content/css")
         @Styles.Render("~/Content/cssStyled")
         @Scripts.Render("~/bundles/modernizr")
@@ -19,7 +19,7 @@
         @Scripts.Render("~/bundles/bootstrap")
         @Scripts.Render("~/bundles/jqueryval")
 
-    }*@
+    }
 <div class="row">
     <section id="loginForm">
         <div class="col-md-12 main">
@@ -59,7 +59,7 @@
                     <div class="form-group"></div>
                     <div class="col-md-12 center-block">
                         <span class="fa fa-key float-lt"
-                              style="padding-top:1em; padding-left:1em; padding-right:0.8em"></span>
+                              style="padding-top:1em; padding-left:1em; padding-right:1em"></span>
                         <input type="password" name="Password" placeholder="Password"
                                class="form-control center-block col-md-4" required />
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
@@ -80,7 +80,7 @@
                             Zaloguj
                         </button>
                     </div>
-                    <p>@Html.ActionLink("Create New Account?", "Register")</p>
+                    <p>@Html.ActionLink("Stwórz nowe konto", "Register")</p>
                 }
             </div>
             <div class="col-md-4"></div>
