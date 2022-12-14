@@ -30,6 +30,7 @@ namespace SystemHotelowyVer3.Models
         [NotMapped]
         //public List<ApplicationUser> Guests => new ApplicationDbContext().Users.ToList().Where(x => x.Roles.ToList().Where(y => y.RoleId == "Guest").ToList());
         public virtual List<ApplicationUser> Guests => getGuestUsers();
+        //public virtual List<Room> Rooms => getRooms();
 
         private List<ApplicationUser> getGuestUsers()
         {
@@ -49,5 +50,23 @@ namespace SystemHotelowyVer3.Models
             return newUsers;
 
         }
+        //private List<Room> getRooms()
+        //{
+        //    ApplicationDbContext db = new ApplicationDbContext();
+        //    List<Room> rooms = db.Rooms.ToList();
+        //    List<Room> newRoom = new List<Room>();
+
+        //    var type = db.Rooms.Where(m => m.RoomType == "Apartament").FirstOrDefault();
+
+        //    foreach (var item in rooms)
+        //    {
+        //        if (item.RoomTypes.FirstOrDefault().TypeId == type.Id)
+        //        {
+        //            newRoom.Add(item);
+        //        }
+        //    }
+        //    return newRoom;
+
+        //}
     }
 }

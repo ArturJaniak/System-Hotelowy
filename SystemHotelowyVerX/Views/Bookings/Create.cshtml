@@ -36,9 +36,13 @@
                 @Html.Label("Pokój", htmlAttributes: new { @class = "control-label" })
             </div>
             <div class="col-md-10">
-                <select name="RoomId" id="RoomId" class="form-control dropdown" @*required*@>
+                <select name="RoomId" id="RoomId" class="form-control dropdown" required>
                     <option value="" disabled selected>Wybierz</option>
                     <option value="Apartament">Apartament</option>
+                    @*@foreach (var item in Model.Rooms)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }*@
                 </select>
                 @Html.ValidationMessageFor(model => model.RoomId, "", new { @class = "text-danger" })
             </div>
@@ -97,39 +101,37 @@
 
     <script type="text/javascript">
 
-    var spinner = document.getElementById("spinner");
-    var SelectRoom = document.getElementById("RoomId");
-    var SelectType = document.getElementById("RoomType");
+        var spinner = document.getElementById("spinner");
+        var SelectRoom = document.getElementById("RoomId");
+        var SelectType = document.getElementById("RoomType");
 
-    function LoadRoomByType() {
-        spinner.className = "fa fa-spinner fa-spin";
-        for (var i = 0; i < SelectRoom.length; i++) {
-            SelectRoom.remove(i);
-        }
-        SelectRoom.innerHTML = "<option value='' disabled selected>Wybierz</option>";
+        function LoadRoomByType() {
+            spinner.className = "fa fa-spinner fa-spin";
+            for (var i = 0; i < SelectRoom.length; i++) {
+                SelectRoom.remove(i);
+            }
+            SelectRoom.innerHTML = "<option value='' disabled selected>Wybierz</option>";
 
-        var formdata = {
-            "RoomType": SelectType.value
-        };
-        //alert(Type.value);
-        if (SelectType.value != null)
-            $.post("/Booking/Rooms",
-                formdata,
-                function (data, status) {
-                    if (status == "success") {
-                        for (var i = 0; i < data.Rooms.length; i++) {
-                            let room = data.Rooms[i];
-                            //alert(room);
-                            SelectRoom.innerHTML +=
-                                "<option value='" + room.Id + "'>" + room.Name + "</option>";
+            var formdata = {
+                "RoomType": SelectType.value
+            };
+            //alert(Type.value);
+            if (SelectType.value != null)
+                $.post("/Bookings/Rooms",
+                    formdata,
+                    function (data, status) {
+                        if (status == "success") {
+                            for (var i = 0; i < data.Rooms.length; i++) {
+                                let room = data.Rooms[i];
+                                //alert(room);
+                                SelectRoom.innerHTML +=
+                                    "<option value='" + room.Id + "'>" + room.Name + "</option>";
+                            }
+                        } else {
+                            alert(status);
                         }
-                    } else {
-                        alert(status);
-                    }
-                    spinner.className = "fa fa-spinner fa-spin hidden";
-                });
-    }
-
+                        spinner.className = "fa fa-spinner fa-spin hidden";
+                    });
+        }
     </script>
 }
-
