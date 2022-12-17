@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using SystemHotelowyVer3.Models;
+using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace SystemHotelowyVer3.Models
 {
@@ -21,7 +23,16 @@ namespace SystemHotelowyVer3.Models
             return userIdentity;
         }
 
-        public string Names { get; set; }
+        [Required(ErrorMessage = "Imię jest wymagane.")]
+        [Display(Name = "Imię")]
+        [StringLength(20)]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Nazwisko jest wymagane.")]
+        [Display(Name = "Nazwisko")]
+        [StringLength(20)]
+        public string Surname { get; set; }
+        //public string Names { get; set; }
         public string Address { get; set; }
         public bool IsActive { get; set; }
         public DateTime Date { get; set; }

@@ -69,6 +69,14 @@ namespace SystemHotelowyVer3.Models
         [Display(Name = "Adres e-mail")]
         public string Email { get; set; }
 
+        [Required(ErrorMessage ="Imię jest wymagane.")]
+        [Display(Name = "Imię")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Nazwisko jest wymagane.")]
+        [Display(Name = "Nazwisko")]
+        public string Surname { get; set; }
+
         [Required]
         [StringLength(100, ErrorMessage = "{0} musi zawierać co najmniej następującą liczbę znaków: {2}.", MinimumLength = 6)]
         [DataType(DataType.Password)]

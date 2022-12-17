@@ -18,12 +18,14 @@ namespace SystemHotelowyVer3.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Rooms
+        //Metoda zwraca listę pokoi
         public async Task<ActionResult> Index()
         {
             return View(await db.Rooms.ToListAsync());
         }
 
         // GET: Rooms/Details/5
+        //Zwraca detale pokoji, wywoływana po kliknięciu przycisku Details w Rooms index view
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -39,6 +41,7 @@ namespace SystemHotelowyVer3.Controllers
         }
 
         // GET: Rooms/Create
+        //Metoda Create zwraca nowy obiekt Room. Tylko admin ma dostęp.
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
@@ -48,6 +51,7 @@ namespace SystemHotelowyVer3.Controllers
         // POST: Rooms/Create
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
+        //Metoda tworząca nowy pokój. Wywoływana po kliknięciu przycisku Create w Rooms index view. Metoda pobiera obiekt typu Room jako argument i zwraca ActionResult.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
