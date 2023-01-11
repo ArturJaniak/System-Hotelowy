@@ -41,7 +41,7 @@
                         <div class="col-md-12 center-block">
                             <span class="fa fa-user float-lt" style="padding:1em;"></span>
                             <input type="text" autocomplete="on" autofocus name="Email"
-                                   placeholder="Email" class="form-control center-block col-md-4"
+                                   placeholder="Email" class="form-control center-block @*col-md-4*@" @*col-md-4 klasa kolumn, siatka bootstrap*@
                                    required />
                             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                         </div>
@@ -51,7 +51,7 @@
                         <div class="col-md-12 center-block">
                             <span class="fa fa-user float-lt" style="padding:1em;"></span>
                             <input type="text" autocomplete="on" autofocus name="Email" value="@Model.Email"
-                                   placeholder="Email" class="form-control center-block col-md-4"
+                                   placeholder="Email" class="form-control center-block @*col-md-4*@"
                                    required />
                             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                         </div>
@@ -61,7 +61,7 @@
                         <span class="fa fa-key float-lt"
                               style="padding-top:1em; padding-left:1em; padding-right:1em"></span>
                         <input type="password" name="Password" placeholder="Password"
-                               class="form-control center-block col-md-4" required />
+                               class="form-control center-block @*col-lg-4*@" required />
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group"></div>
