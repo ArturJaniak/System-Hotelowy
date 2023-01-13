@@ -12,6 +12,7 @@ using SystemHotelowyVer3.Models;
 namespace SystemHotelowyVer3.Controllers
 {
     // [Authorize]
+    [Authorize(Roles = "Admin,Guest")]
     public class BookingsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
