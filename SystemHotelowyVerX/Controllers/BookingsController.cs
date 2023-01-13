@@ -55,7 +55,7 @@ namespace SystemHotelowyVer3.Controllers
                 booking.Date = DateTime.Now;
                 //booking.CheckIn = DateTime.Parse(booking.CheckIn);
             }
-            if (false/*ModelState.IsValid*/)
+            if (ModelState.IsValid)
             {
                 List<Booking> uses = db.Booking.ToList().Where(x => x.RoomId == booking.RoomId).ToList();
                 foreach (var item in uses)
