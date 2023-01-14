@@ -29,7 +29,7 @@ namespace SystemHotelowyVer3.Models
         //Właściwość Time jest wymagana, ponieważ jest używana do celów sprawdzania poprawności z typem DateTime.
         public DateTime CheckIn { get; set; }
         [NotMapped]
-        public virtual DateTime CheckOut => CheckIn.AddHours(Time);
+        public virtual DateTime CheckOut => CheckIn.AddDays(Time);
         public DateTime Date { get; set; }
         public virtual Room Room => new ApplicationDbContext().Rooms.Find(RoomId);
         public virtual ApplicationUser Guest => new ApplicationDbContext().Users.Find(GuestId);
