@@ -194,6 +194,10 @@
     <Compile Include="Migrations\202212170956565_addfirstname.designer.cs">
       <DependentUpon>202212170956565_addfirstname.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202301141824165_InitialCreate.cs" />
+    <Compile Include="Migrations\202301141824165_InitialCreate.designer.cs">
+      <DependentUpon>202301141824165_InitialCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Booking.cs" />
@@ -326,6 +330,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202212170956565_addfirstname.resx">
       <DependentUpon>202212170956565_addfirstname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301141824165_InitialCreate.resx">
+      <DependentUpon>202301141824165_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
