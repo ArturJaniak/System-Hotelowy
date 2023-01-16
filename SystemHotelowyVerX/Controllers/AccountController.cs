@@ -87,7 +87,7 @@ namespace SystemHotelowyVer3.Controllers
                 //To add the role to an existing user:
                 var role = db.Roles.Where(m => m.Name == "Admin").FirstOrDefault();
 
-                var result = await this.UserManager.CreateAsync(user, "Password123.");
+                var result = await this.UserManager.CreateAsync(user, "Password123");
                 if (result.Succeeded)
                 {
                     //user.Roles.Add(new IdentityUserRole { RoleId = role.Id });
