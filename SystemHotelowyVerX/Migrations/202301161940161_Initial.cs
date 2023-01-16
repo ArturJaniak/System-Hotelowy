@@ -3,10 +3,26 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Bookings",
+                c => new
+                {
+                    Id = c.Int(nullable: false, identity: true),
+                    RoomId = c.Int(nullable: false),
+                    GuestId = c.String(nullable: false),
+                    Time = c.Double(nullable: false),
+                    CheckIn = c.DateTime(nullable: false),
+                    Date = c.DateTime(nullable: false),
+                    ApplicationUser_Id = c.String(maxLength: 128),
+                })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUser_Id)
+                .Index(t => t.ApplicationUser_Id);
+
             CreateTable(
                 "dbo.AspNetRoles",
                 c => new
@@ -31,22 +47,6 @@
                 .Index(t => t.RoleId);
 
             CreateTable(
-                "dbo.Bookings",
-                c => new
-                {
-                    Id = c.Int(nullable: false, identity: true),
-                    RoomId = c.Int(nullable: false),
-                    GuestId = c.String(nullable: false),
-                    Time = c.Double(nullable: false),
-                    CheckIn = c.DateTime(nullable: false),
-                    Date = c.DateTime(nullable: false),
-                    ApplicationUser_Id = c.String(maxLength: 128),
-                })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUser_Id)
-                .Index(t => t.ApplicationUser_Id);
-
-            CreateTable(
                 "dbo.Rooms",
                 c => new
                 {
@@ -64,6 +64,8 @@
                 c => new
                 {
                     Id = c.String(nullable: false, maxLength: 128),
+                    FirstName = c.String(nullable: false, maxLength: 20),
+                    Surname = c.String(nullable: false, maxLength: 20),
                     Address = c.String(),
                     IsActive = c.Boolean(nullable: false),
                     Date = c.DateTime(nullable: false),
@@ -78,8 +80,6 @@
                     LockoutEnabled = c.Boolean(nullable: false),
                     AccessFailedCount = c.Int(nullable: false),
                     UserName = c.String(nullable: false, maxLength: 256),
-                    FirstName = c.String(nullable: false, maxLength: 20),
-                    SurName = c.String(nullable: false, maxLength: 20),
                 })
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.UserName, unique: true, name: "UserNameIndex");
@@ -108,31 +108,30 @@
                 .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
+
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Bookings", "ApplicationUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Bookings", "RoomId1", "dbo.Rooms");
+            DropForeignKey("dbo.Bookings", "ApplicationUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
-            DropIndex("dbo.Bookings", new[] { "ApplicationUser_Id" });
-            DropIndex("dbo.Bookings", new[] { "RoomId1" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Bookings", new[] { "ApplicationUser_Id" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.Rooms");
-            DropTable("dbo.Bookings");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Bookings");
         }
     }
 }
